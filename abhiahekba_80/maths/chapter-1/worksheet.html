@@ -1,2 +1,456 @@
-<h1>Worksheet</h1>
-<p>Paste AI generated HTML herefghfghfghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Population - Class 9 Geography</title>
+    
+    <style>
+        /* --- CSS VARIABLES (Vardaan Theming) --- */
+        :root {
+            /* Light Mode Palette */
+            --yellow-bg: #fff9c4;
+            --yellow-border: #fbc02d;
+            --green-bg: #e8f5e9;
+            --green-border: #43a047;
+            --blue-bg: #e3f2fd;
+            --blue-border: #1e88e5;
+            --pink-bg: #fce4ec;
+            --pink-border: #d81b60;
+            --text-main: #000000;
+            --paper-bg: #ffffff;
+            --accent-purple: #7e57c2;
+            --meta-text: #666666;
+            --example-bg: rgba(255,255,255,0.6);
+            --example-text: #444444;
+            --toggle-bg: #eee;
+            --toggle-border: #ccc;
+            --icon-fill: #000;
+        }
+
+        /* --- DARK MODE VARIABLES --- */
+        html.dark-mode {
+            --yellow-bg: #3f3a00;
+            --yellow-border: #fdd835;
+            --green-bg: #0f2e13;
+            --green-border: #81c784;
+            --blue-bg: #0d1b2a;
+            --blue-border: #64b5f6;
+            --pink-bg: #300815;
+            --pink-border: #f06292;
+            --text-main: #e0e0e0;
+            --paper-bg: #121212;
+            --accent-purple: #d1c4e9;
+            --meta-text: #aaaaaa;
+            --example-bg: rgba(255,255,255,0.1);
+            --example-text: #cccccc;
+            --toggle-bg: #333;
+            --toggle-border: #555;
+            --icon-fill: #fff;
+        }
+
+        /* --- GLOBAL LAYOUT --- */
+        body {
+            background-color: var(--paper-bg);
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* --- WATERMARK OVERLAY --- */
+        .watermark-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.3s ease;
+            mix-blend-mode: multiply;
+        }
+
+        .watermark-image {
+            opacity: 0.1;
+            max-width: 80%;
+            transition: all 0.3s ease;
+        }
+
+        /* Dark Mode Watermark Logic */
+        html.dark-mode .watermark-overlay {
+            mix-blend-mode: screen; 
+        }
+
+        html.dark-mode .watermark-image {
+            filter: invert(1); 
+            opacity: 0.15;
+        }
+
+        /* --- PAPER SHEET CONTAINER --- */
+        .paper-sheet {
+            background-color: var(--paper-bg);
+            width: 210mm;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20mm;
+            box-sizing: border-box;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        /* --- BRANDING HEADER --- */
+        .branding-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px double var(--blue-border);
+            padding-bottom: 15px;
+        }
+        
+        .institute-name {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--blue-border);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .system-name {
+            font-size: 1.1rem;
+            color: var(--meta-text);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* --- BRANDING FOOTER --- */
+        .branding-footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--toggle-border);
+            color: var(--meta-text);
+        }
+
+        .created-by {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .powered-by {
+            font-size: 0.9rem;
+            color: var(--pink-border);
+            font-style: italic;
+        }
+
+        /* --- TYPOGRAPHY & ELEMENTS --- */
+        h1 {
+            font-size: 2.2rem;
+            color: var(--blue-border);
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--blue-border);
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: var(--pink-border);
+            margin-top: 40px;
+            border-left: 5px solid var(--pink-border);
+            padding-left: 15px;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--accent-purple);
+            margin-top: 25px;
+            margin-bottom: 10px;
+            text-decoration: underline;
+            text-decoration-color: var(--accent-purple);
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+        }
+
+        p, li {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        strong {
+            color: var(--pink-border);
+        }
+
+        /* --- INFO BOXES --- */
+        .blue-box {
+            background-color: var(--blue-bg);
+            border: 2px solid var(--blue-border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .green-box {
+            background-color: var(--green-bg);
+            border: 2px solid var(--green-border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .yellow-box {
+            background-color: var(--yellow-bg);
+            border: 2px solid var(--yellow-border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .box-label {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--paper-bg);
+            padding: 2px 10px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            border: 2px solid;
+            border-radius: 4px;
+            color: var(--text-main);
+        }
+
+        .blue-box .box-label { color: var(--blue-border); border-color: var(--blue-border); }
+        .green-box .box-label { color: var(--green-border); border-color: var(--green-border); }
+        .yellow-box .box-label { color: #f9a825; border-color: var(--yellow-border); }
+
+        /* --- THEME TOGGLE --- */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--toggle-bg);
+            border: 1px solid var(--toggle-border);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle span {
+            font-size: 1.2rem;
+            filter: grayscale(100%); 
+        }
+
+        /* Print Optimization */
+        @media print {
+            .theme-toggle { display: none; }
+            .paper-sheet { width: 100%; padding: 0; }
+            body { background: white; color: black; }
+            html.dark-mode { --paper-bg: #fff; --text-main: #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- WATERMARK -->
+    <div class="watermark-overlay">
+        <img src="https://res.cloudinary.com/dxwszplz7/image/upload/v1765105606/VARDAAN_watermark_jxdqqb.jpg" alt="Vardaan Watermark" class="watermark-image">
+    </div>
+
+    <!-- THEME TOGGLE -->
+    <div class="theme-toggle" onclick="document.documentElement.classList.toggle('dark-mode')">
+        <span>🌓</span>
+    </div>
+
+    <div class="paper-sheet">
+        
+        <div class="branding-header">
+            <div class="institute-name">Vardaan Learning Institute</div>
+            <div class="system-name">Class 9 Geography • Chapter Notes</div>
+        </div>
+
+        <h1>Chapter 6: Population</h1>
+        
+        <!-- SECTION 1 -->
+        <h2>1. Why Population Matters</h2>
+        <p>Human beings are the most pivotal element in social studies. They are important because:</p>
+        <ul>
+            <li>They are both <strong>producers</strong> and <strong>consumers</strong> of the earth's resources.</li>
+            <li>A natural resource (like coal) becomes a 'resource' only when human beings invent technology to use it.</li>
+            <li>A natural event (like a flood) becomes a 'disaster' only when it affects a populated area.</li>
+        </ul>
+
+        <div class="blue-box">
+            <span class="box-label">Definition: Census</span>
+            <p>A <strong>Census</strong> is an official enumeration (counting) of population done periodically.</p>
+            <ul>
+                <li>The first census in India was held in <strong>1872</strong>.</li>
+                <li>The first <em>complete</em> census was taken in <strong>1881</strong>.</li>
+                <li>Since then, it has been held every <strong>10 years</strong>.</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 2 -->
+        <h2>2. Population Size and Distribution</h2>
+        
+        <h3>2.1 Distribution by Numbers (Size)</h3>
+        <ul>
+            <li><strong>Total Population:</strong> As of March 2011, India's population was <strong>1,210.6 million</strong> (1.21 billion).</li>
+            <li><strong>Global Share:</strong> India accounts for <strong>17.5%</strong> of the world's population.</li>
+            <li><strong>Most Populous State:</strong> Uttar Pradesh (199 million), which accounts for 16% of the country's population.</li>
+            <li><strong>Least Populous State/UT:</strong> Sikkim (0.6 million) and Lakshadweep (only 64,429 people).</li>
+            <li><strong>Concentration:</strong> Almost half of India's population lives in just five states: <strong>Uttar Pradesh, Maharashtra, Bihar, West Bengal, and Andhra Pradesh</strong>.</li>
+            <li><strong>Area Fact:</strong> Rajasthan is the biggest state by area but has only 5.5% of the total population.</li>
+        </ul>
+
+        <h3>2.2 Distribution by Density</h3>
+        <p>Population density is calculated as the number of persons per unit area (usually per square km). It helps us understand how crowded a place is.</p>
+        <ul>
+            <li><strong>India's Density (2011):</strong> 382 persons per sq km.</li>
+            <li><strong>Highest Density:</strong> Bihar (1,102 persons/sq km).</li>
+            <li><strong>Lowest Density:</strong> Arunachal Pradesh (17 persons/sq km).</li>
+        </ul>
+        <div class="green-box">
+            <span class="box-label">Factors Affecting Density</span>
+            <ul>
+                <li><strong>Low Density Regions:</strong> Rugged terrain and unfavourable climatic conditions are responsible for sparse population (e.g., Mountainous states, Desert areas).</li>
+                <li><strong>Moderate Density:</strong> Hilly, dissected, and rocky nature of terrain, moderate to low rainfall, and shallow soils (e.g., Peninsular states).</li>
+                <li><strong>High Density:</strong> Flat plains with fertile soils and abundant rainfall (e.g., Northern Plains, Kerala).</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 3 -->
+        <h2>3. Population Growth and Processes of Change</h2>
+        <p>Population is dynamic; numbers, distribution, and composition change constantly.</p>
+
+        <h3>3.1 Population Growth</h3>
+        <p>Growth refers to the change in the number of inhabitants of a country/territory during a specific period. It can be expressed in two ways:</p>
+        <ol>
+            <li><strong>Absolute Numbers:</strong> Obtained by subtracting the earlier population (e.g., 2001) from the later population (e.g., 2011). This is the "annual increase".</li>
+            <li><strong>Annual Growth Rate (%):</strong> If the rate is 2%, it means there was an increase of 2 persons for every 100 persons in the base population.</li>
+        </ol>
+        <p><strong>Trend:</strong> Since 1981, the <em>rate</em> of growth has started declining, but the <em>total number</em> of people being added is still very high because the base population is huge.</p>
+
+        <h3>3.2 Processes of Population Change</h3>
+        <p>There are three main processes that drive change: Births, Deaths, and Migration.</p>
+        
+        <div class="yellow-box">
+            <span class="box-label">Key Definitions</span>
+            <ul>
+                <li><strong>Birth Rate:</strong> The number of live births per 1,000 persons in a year. In India, birth rates have always been higher than death rates.</li>
+                <li><strong>Death Rate:</strong> The number of deaths per 1,000 persons in a year. The main cause of India's population growth has been the rapid decline in death rates.</li>
+                <li><strong>Migration:</strong> Movement of people across regions and territories.
+                    <ul>
+                        <li><strong>Internal Migration:</strong> Within the country. It does <em>not</em> change the size of the population but changes the <em>distribution</em>.</li>
+                        <li><strong>International Migration:</strong> Between countries. Changes the size of the population.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <p><strong>Why do people migrate?</strong></p>
+        <ul>
+            <li><strong>Push Factors (Rural):</strong> Adverse conditions like poverty and unemployment in rural areas "push" people out.</li>
+            <li><strong>Pull Factors (Urban):</strong> Better employment opportunities and living conditions in cities "pull" people in.</li>
+            <li><strong>Impact:</strong> In India, rural-to-urban migration has resulted in a steady increase in the percentage of the urban population (17.29% in 1951 to 31.80% in 2011).</li>
+        </ul>
+
+        <!-- SECTION 4 -->
+        <h2>4. Characteristics of the Population</h2>
+
+        <h3>4.1 Age Composition</h3>
+        <p>The population is divided into three groups based on age:</p>
+        <ul>
+            <li><strong>Children (0-14 years):</strong> Economically unproductive. They need to be provided with food, clothing, education, and medical care.</li>
+            <li><strong>Working Age (15-59 years):</strong> Economically productive and biologically reproductive. They comprise the working population.</li>
+            <li><strong>Aged (59+ years):</strong> Can be economically productive (if they choose to work) but usually retired. They may require health care.</li>
+        </ul>
+
+        <h3>4.2 Sex Ratio</h3>
+        <p>Defined as the number of females per 1000 males in the population. It is an important social indicator to measure equality.</p>
+        <ul>
+            <li><strong>India (2011):</strong> 943 females per 1000 males.</li>
+            <li><strong>States with High Ratio:</strong> Kerala (1084), Puducherry (1038).</li>
+            <li><strong>States with Low Ratio:</strong> Delhi (866), Haryana (877).</li>
+        </ul>
+
+        <h3>4.3 Literacy Rates</h3>
+        <p>A person aged 7 years and above, who can read and write with understanding in any language, is treated as literate.</p>
+        <ul>
+            <li><strong>2011 Census:</strong> Literacy rate in India is <strong>73%</strong>.</li>
+            <li><strong>Gender Gap:</strong> Males (80.9%) vs Females (64.6%).</li>
+        </ul>
+
+        <h3>4.4 Occupational Structure</h3>
+        <p>The distribution of the population according to different types of occupation.</p>
+        <ul>
+            <li><strong>Primary Activities:</strong> Agriculture, animal husbandry, forestry, fishing, mining. (64% of India's population works here).</li>
+            <li><strong>Secondary Activities:</strong> Manufacturing industry, building, construction. (13% of population).</li>
+            <li><strong>Tertiary Activities:</strong> Transport, communications, commerce, administration, services. (20% of population).</li>
+            <li><strong>Trend:</strong> There is a shift towards secondary and tertiary sectors due to industrialisation and urbanisation.</li>
+        </ul>
+
+        <h3>4.5 Health</h3>
+        <p>Health is an important component of population composition.</p>
+        <ul>
+            <li><strong>Improvements:</strong> Death rate declined from 25 (1951) to 7.2 (2011). Life expectancy increased from 36.7 years (1951) to 67.9 years (2012).</li>
+            <li><strong>Challenges:</strong> Per capita calorie consumption is still low. Safe drinking water and basic sanitation are available to only one-third of the rural population.</li>
+        </ul>
+
+        <!-- SECTION 5 -->
+        <h2>5. Adolescent Population</h2>
+        <p>Adolescents are usually grouped in the age group of <strong>10 to 19 years</strong>. They constitute one-fifth of India's total population.</p>
+        <ul>
+            <li><strong>Importance:</strong> They are the future resources of the country.</li>
+            <li><strong>Nutritional Needs:</strong> Their nutritional requirements are higher than adults. Poor nutrition can lead to deficiency and stunted growth.</li>
+            <li><strong>Issues:</strong> Many adolescent girls suffer from <strong>anaemia</strong>. They face problems related to early marriage and motherhood, which poses health risks.</li>
+        </ul>
+
+        <!-- SECTION 6 -->
+        <h2>6. National Population Policy (NPP) 2000</h2>
+        <p>The Government of India initiated the NPP 2000 to improve individual health and welfare.</p>
+        
+        <div class="blue-box">
+            <span class="box-label">Objectives of NPP 2000</span>
+            <ul>
+                <li>Provide free and compulsory school education up to 14 years of age.</li>
+                <li>Reduce Infant Mortality Rate (IMR) to below 30 per 1000 live births.</li>
+                <li>Achieve universal immunization of children against all vaccine-preventable diseases.</li>
+                <li>Promote delayed marriage for girls.</li>
+                <li>Make family welfare a people-centred programme.</li>
+            </ul>
+        </div>
+        
+        <p><strong>NPP 2000 and Adolescents:</strong> The policy explicitly identified adolescents as an underserved group. It focuses on providing them with nutritional needs, protection from unwanted pregnancies and sexually transmitted diseases (STDs), and encouraging delayed marriage and child-bearing.</p>
+
+        <div class="branding-footer">
+            <p class="created-by">Created by Team Vardaan ❤️</p>
+            <p class="powered-by">Powered by Vardaan Comet</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
